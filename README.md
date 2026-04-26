@@ -39,11 +39,63 @@ The system supports real-time ride matching, dynamic pricing strategies, live st
 
 ```
 ridelink/
-├── index.html          # Main HTML page
-├── style.css           # Styling and responsive layout
-├── app.js              # Core application logic (OOP + Design Patterns)
-├── README.md           # Project documentation
-└── assets/             # Images and static assets
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── db.ts                  # MongoDB connection
+│   │   ├── middleware/
+│   │   │   ├── auth.middleware.ts     # JWT verify middleware
+│   │   │   └── role.middleware.ts     # Rider/Driver role guard
+│   │   ├── models/
+│   │   │   ├── User.model.ts          # Abstract base (Rider + Driver)
+│   │   │   ├── Ride.model.ts          # Ride entity
+│   │   │   └── Vehicle.model.ts       # Vehicle entity
+│   │   ├── routes/
+│   │   │   ├── auth.routes.ts         # /api/auth/*
+│   │   │   ├── ride.routes.ts         # /api/rides/*
+│   │   │   └── driver.routes.ts       # /api/driver/*
+│   │   ├── controllers/
+│   │   │   ├── auth.controller.ts
+│   │   │   ├── ride.controller.ts
+│   │   │   └── driver.controller.ts
+│   │   ├── services/
+│   │   │   ├── pricing.service.ts     # Strategy Pattern
+│   │   │   ├── ride.service.ts        # Factory + Observer Pattern
+│   │   │   └── rideManager.service.ts # Singleton Pattern
+│   │   ├── types/
+│   │   │   └── index.ts               # Shared TS types/enums
+│   │   └── index.ts                   # Express app entry
+│   ├── package.json
+│   └── tsconfig.json
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── axios.ts               # Axios instance + interceptors
+│   │   ├── components/
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── RideCard.tsx
+│   │   │   ├── PricingCard.tsx
+│   │   │   └── StatusBadge.tsx
+│   │   ├── context/
+│   │   │   └── AuthContext.tsx        # Global auth state
+│   │   ├── pages/
+│   │   │   ├── Landing.tsx
+│   │   │   ├── Login.tsx
+│   │   │   ├── Register.tsx
+│   │   │   ├── RiderDashboard.tsx
+│   │   │   └── DriverDashboard.tsx
+│   │   ├── types/
+│   │   │   └── index.ts
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── tsconfig.json
+│
+└── README.md
 ```
 
 ---
